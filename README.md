@@ -3,21 +3,23 @@
 ## Integrantes
 
 - **Nome**: Andrey
-- **RM**: [Seu RM]
+- **RM**: 555339
 - **Nome**: Henrique
 - **RM**: 554493
 - **Nome**: Oliver
-- **RM**: [RM do Integrante 3]
-- **Nome**: Pedro gutierre
-- **RM**: [RM do Integrante 4]
+- **RM**: 554954
+- **Nome**: Pedro Gutierre
+- **RM**: 555445
 - **Nome**: William
-- **RM**: [RM do Integrante 4]
+- **RM**: 555132
 
 ## Descrição do Projeto
 
 Este projeto consiste em um quiz interativo sobre a Fórmula E, desenvolvido em Python. O quiz tem como objetivo educar e entreter os usuários, aumentando o conhecimento sobre a Fórmula E de maneira gamificada. 
 
 Os jogadores podem escolher entre dois níveis de dificuldade: fácil e difícil. Eles terão um número limitado de vidas e precisarão responder corretamente às perguntas para avançar no jogo. O projeto também inclui uma leaderboard que classifica os jogadores com base na pontuação e dificuldade escolhida.
+
+Além disso, você pode aprender tudo o que precisa sobre a Fórmula E na experiência do Reblox no Roblox, onde um ambiente virtual imersivo recria o evento de uma corrida, incluindo a entrada, as lojas e, claro, a pista.
 
 ## Instruções de Uso
 
@@ -44,12 +46,8 @@ Os jogadores podem escolher entre dois níveis de dificuldade: fácil e difícil
    - A cada 5 respostas corretas consecutivas, o jogador ganha uma vida extra.
 
 5. **Leaderboard**
-   - No final do jogo ou quando o jogador ficar sem vidas, ele será solicitado a inserir seu nome para adicionar à leaderboard.
+   - No final do jogo ou quando o jogador ficar sem vidas ou terminar todas perguntas, será solicitado a inserir seu nome para adicionar à leaderboard.
    - A leaderboard mostra as pontuações dos jogadores, separadas por dificuldade.
-
-## Requisitos
-
-- Python 3.x
 
 ## Estrutura do Código
 
@@ -64,11 +62,3 @@ Os jogadores podem escolher entre dois níveis de dificuldade: fácil e difícil
 - **Quiz:** Função principal que gerencia a seleção de dificuldade, exibição de perguntas e coleta de respostas.
 - **Leaderboard:** Exibe a leaderboard com as pontuações dos jogadores.
 - **Menu:** Interface inicial do jogo que permite ao jogador escolher entre jogar, ver a leaderboard ou sair.
-
-## Informações Adicionais
-
-- Este projeto faz parte de uma atividade de avaliação da disciplina de Programação.
-- O objetivo é aplicar conceitos de entrada, processamento e saída de dados, armazenamento em listas, estruturas condicionais e de repetição, e construção de funções.
-```
-
-Certifique-se de substituir os espaços reservados `[Seu Nome]`, `[Seu RM]`, `[Nome do Integrante 2]`, etc., com as informações corretas antes de finalizar o arquivo README.
