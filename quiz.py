@@ -1,10 +1,10 @@
+#Declara variaveis globais
 vidas = 3
 sequencia = 0
 acertadas = 0
 dificuldade = ""
 
-leaderboardLista = ["sopa", 10, "D", "pedro", 12, "F", "andrey", 12, "D"]
-# leaderboardLista = []
+leaderboardLista = []
 
 perguntasFacil = [
     "Qual é a principal fonte de energia dos carros na Fórmula E?",
@@ -137,9 +137,13 @@ respostasDificil = ["B", "A", "C", "C", "C", "B", "B", "A", "A", "A"]
 respostas = []
 perguntas = []
 
+#funcao para exibir as vidas e a sequnecia do usuario
+
 def mostrarVidasSequencia():
     print(f"Vidas: {vidas}")
     print(f"Sequencia de acertos: {sequencia}")
+
+#funcao que confere se a resposta da foi correta
 
 def conferirResposta(index, alternativa, listaRespostas):
     global sequencia, vidas, acertadas
@@ -159,10 +163,14 @@ def conferirResposta(index, alternativa, listaRespostas):
 
     mostrarVidasSequencia()
 
+#adiciona o usuario atual a leaderboard
+
 def addLeaderboard():
     leaderboardLista.append(input("Digite seu nome para adicionar à leaderboard: "))
     leaderboardLista.append(acertadas)
     leaderboardLista.append(dificuldade)
+
+#finaliza um jogo
 
 def gameOver():
     if vidas <= 0:
@@ -172,14 +180,20 @@ def gameOver():
         print("Voltando ao menu... \n")
         menu()
 
+#Adiciona uma vida ao ususario se a sequencia dele for divisivel por 5
+
 def addVida():
     if sequencia % 5 == 0:
         vidas += 1
         print("5 acertos seguidos! Ganhou uma vida!")
 
+#valida as respostas possiveis do usuario
+
 def validarResposta(alternativa):
     alternativa = alternativa.upper()
     return alternativa == "A" or alternativa == "B" or alternativa == "C" or alternativa == "D"
+
+#comeca a exebir perguntas e pedir respostas
 
 def quiz():
     global dificuldade, respostas, perguntas
@@ -224,6 +238,8 @@ def quiz():
     addLeaderboard()
     menu()
 
+# ordena, separa e exibe a lista de pontuacoes
+
 def leaderboard():
     lista_D = []
     lista_F = []
@@ -257,6 +273,8 @@ def leaderboard():
 
     input("Digite qualquer coisa para voltar para o menu... \n")
     menu()
+
+#exibe menu principal
 
 def menu():
     global sequencia, vidas, acertadas, dificuldade
