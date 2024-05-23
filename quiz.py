@@ -3,8 +3,8 @@ sequencia = 0
 acertadas = 0
 dificuldade = ""
 
-# leaderboardLista = ["sopa", 10, "D", "pedro", 12, "F", "andrey", 12, "D"]
-leaderboardLista = []
+leaderboardLista = ["sopa", 10, "D", "pedro", 12, "F", "andrey", 12, "D"]
+# leaderboardLista = []
 
 perguntasFacil = [
     "Qual é a principal fonte de energia dos carros na Fórmula E?",
