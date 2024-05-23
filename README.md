@@ -13,7 +13,7 @@
 - **Nome**: William
 - **RM**: 555132
 
-## Descrição do Projeto
+## Descrição do Projeto (falar oq tem a fazer com a experiencia)
 
 Este projeto consiste em um quiz interativo sobre a Fórmula E, desenvolvido em Python. O quiz tem como objetivo educar e entreter os usuários, aumentando o conhecimento sobre a Fórmula E de maneira gamificada. 
 
