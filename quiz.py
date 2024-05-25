@@ -183,6 +183,7 @@ def gameOver():
 #Adiciona uma vida ao ususario se a sequencia dele for divisivel por 5
 
 def addVida():
+    global vidas
     if sequencia % 5 == 0:
         vidas += 1
         print("5 acertos seguidos! Ganhou uma vida!")
