@@ -1,4 +1,5 @@
 from pyscript import document
+from js import localStorage
 
 perguntas = {
     "facil": [
@@ -210,23 +211,69 @@ perguntas = {
 quizEl = document.querySelector("#quiz")
 currentQuestionIndex = 0
 perguntasSelecionadas = []
+
 correctAnwsers = 0
+lifes = 3
+sequence = 0
+namePlayer = ""
+
+import json
+
+leaderboard = {
+    "facil": [],
+    "dificil": []
+}
+
+def clearQuiz():
+    quizEl.innerHTML = ""
+
+def saveData():
+    global namePlayer, correctAnwsers, leaderboard
+    
+    if namePlayer:
+        difficulty = "facil" if perguntasSelecionadas == perguntas["facil"] else "dificil"
+        leaderboard[difficulty].append({"nome": namePlayer, "pontuacao": correctAnwsers})
+        
+        # Ordenar o leaderboard
+        leaderboard[difficulty] = sorted(leaderboard[difficulty], key=lambda x: x['pontuacao'], reverse=True)
+        
+        # Salvar no armazenamento local
+        localStorage.setItem("leaderboard", json.dumps(leaderboard))
+
+def loadData():
+    global leaderboard
+    stored_leaderboard = localStorage.getItem("leaderboard")
+    if stored_leaderboard:
+        leaderboard = json.loads(stored_leaderboard)
+
+def addLife():
+    global lifes, sequence
+    if sequence > 0 and sequence % 5 == 0:
+        lifes += 1
+        print("5 acertos seguidos! Ganhou uma vida!")
 
 def showMenu(event = False):
 
-    quizEl.innerHTML = ""
+    saveData()
+
+    clearQuiz()
+
 
     buttonJogar = document.createElement("button")
     buttonJogar.innerText = "Jogar"
     buttonJogar.setAttribute("py-click", "selectDifficult")
     
+    buttonLeaderboard = document.createElement("button")
+    buttonLeaderboard.innerText = "Placar"
+    buttonLeaderboard.setAttribute("py-click", "showLeaderboard")
+    
     quizEl.appendChild(buttonJogar)
-
-showMenu()
-
-
+    quizEl.appendChild(buttonLeaderboard)
 
 def selectDifficult(event):
+
+    clearQuiz()
+
     dificultDiv = document.createElement("div")
     dificultDiv.classList.add("menu")
 
@@ -251,7 +298,7 @@ def quiz(event):
 
     currentQuestionIndex = 0
 
-    quizEl.innerHTML = ""
+    clearQuiz()
 
     difficult = event.target.value
 
@@ -267,24 +314,43 @@ def quiz(event):
 
     question()
 
+def showStatus():
 
+    clearQuiz()
+
+    statusEl = document.createElement("div")
+    statusEl.classList.add("status")
+
+    statusEl.innerHTML = f"""
+    <p>Vidas: {lifes}</p>
+    <p>Sequência: {sequence}</p>
+    <p>Acertos: {correctAnwsers}</p>
+    """
+
+    quizEl.appendChild(statusEl)
+    
 
 def question():
 
     global perguntasSelecionadas
 
-    quizEl.innerHTML = ""
+    clearQuiz()
+
+    showStatus()
 
     currentQuestion = perguntasSelecionadas[currentQuestionIndex]
 
     question = currentQuestion["pergunta"]
     answers = currentQuestion["respostas"]
 
+    questionDiv = document.createElement("div")
+    questionDiv.classList.add("question")
+
     questionEl = document.createElement("p")
     questionEl.innerHTML = question
 
     answersEl = document.createElement("div")
-    answersEl.classList.add("menu")
+    answersEl.classList.add("answers")
 
     for i, answer in enumerate(answers):
         answerEl = document.createElement("button")
@@ -294,12 +360,14 @@ def question():
 
         answersEl.appendChild(answerEl)
 
-    quizEl.appendChild(questionEl)
-    quizEl.appendChild(answersEl)
+    questionDiv.appendChild(questionEl)
+    questionDiv.appendChild(answersEl)
+
+    quizEl.appendChild(questionDiv)
 
 def verifyAnswer(event):
 
-    global perguntasSelecionadas, currentQuestionIndex, correctAnwsers
+    global perguntasSelecionadas, currentQuestionIndex, correctAnwsers, lifes, sequence
 
     currentAnswer = perguntasSelecionadas[currentQuestionIndex]["respostaCorreta"]
     selectedAnswer = event.target.value
@@ -307,34 +375,71 @@ def verifyAnswer(event):
     if currentAnswer == selectedAnswer:
         print("acertou")
         correctAnwsers += 1
+        sequence += 1
+        addLife()
     else:
         print("errou")
+        sequence = 0
+        lifes -= 1
 
-
-    if not currentQuestionIndex >= len(perguntasSelecionadas) - 1:
+    if lifes <= 0 or currentQuestionIndex >= len(perguntasSelecionadas) - 1:
+        gameOver()
+    else:
         currentQuestionIndex += 1
         question()
-    else:
-        gameOver()
-
-
 
 def gameOver():
-    quizEl.innerHTML = ""
+
+    global namePlayer
+
+    clearQuiz()
 
     correctAnwsersEl = document.createElement("p")
     correctAnwsersEl.innerHTML = "Respostas corretas: " + str(correctAnwsers)
 
     inputName = document.createElement("input")
+    inputName.setAttribute("id", "playerName")
     inputName.setAttribute("placeholder", "Insira seu nome")
 
+    buttonSave = document.createElement("button")
+    buttonSave.innerText = "Salvar"
+    buttonSave.setAttribute("py-click", "saveScore")
+    
+    quizEl.appendChild(correctAnwsersEl)
+    quizEl.appendChild(inputName)
+    quizEl.appendChild'(buttonSave)
+
+def saveScore(event):
+    global namePlayer
+    namePlayer = document.querySelector("#playerName").value
+    showMenu()
+
+def showLeaderboard(event):
+    clearQuiz()
+    
+    leaderboardEl = document.createElement("div")
+    leaderboardEl.classList.add("leaderboard")
+    
+    for difficulty in leaderboard:
+        difficultyEl = document.createElement("div")
+        difficultyEl.innerHTML = f"<h2>{difficulty.capitalize()}</h2>"
+        
+        for i, player in enumerate(leaderboard[difficulty][:10]):
+            playerEl = document.createElement("p")
+            playerEl.innerHTML = f"{i+1}. {player['nome']} - {player['pontuacao']} pontos"
+            difficultyEl.appendChild(playerEl)
+        
+        leaderboardEl.appendChild(difficultyEl)
+    
     buttonMenu = document.createElement("button")
     buttonMenu.innerText = "Menu"
     buttonMenu.setAttribute("py-click", "showMenu")
     
-    quizEl.appendChild(correctAnwsersEl)
-    quizEl.appendChild(inputName)
+    quizEl.appendChild(leaderboardEl)
     quizEl.appendChild(buttonMenu)
 
+def startGame():
+    loadData()
+    showMenu()  
 
-    
+startGame()
