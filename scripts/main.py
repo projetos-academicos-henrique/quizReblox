@@ -253,9 +253,6 @@ def addLife():
         print("5 acertos seguidos! Ganhou uma vida!")
 
 def showMenu(event = False):
-
-    saveData()
-
     clearQuiz()
 
 
@@ -407,11 +404,12 @@ def gameOver():
     
     quizEl.appendChild(correctAnwsersEl)
     quizEl.appendChild(inputName)
-    quizEl.appendChild'(buttonSave)
+    quizEl.appendChild(buttonSave)
 
 def saveScore(event):
     global namePlayer
     namePlayer = document.querySelector("#playerName").value
+    saveData()
     showMenu()
 
 def showLeaderboard(event):
