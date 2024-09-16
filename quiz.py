@@ -10,20 +10,9 @@ dificuldade = ""
 
 leaderboardLista = {
     "facil": [
-        {
-            "nome": "sopa pior",
-            "pontuacao": 0
-        },
-        {
-            "nome": "sopa melhor",
-            "pontuacao": 10
-        }
     ],
     "dificil": [
-        {
-            "nome": "",
-            "pontuacao": 0
-        }
+
     ]
 }
 
@@ -104,17 +93,21 @@ def quiz():
     print("D - Difícil")
 
     dificuldade = input("Sua escolha: ").upper()
-   
+    print("")
+
+
     while True:
         if dificuldade == "F":
             respostas = [pergunta["respostaCorreta"] for pergunta in perguntas["facil"]]
             perguntas = perguntas["facil"]
             print("Dificuldade Fácil escolhida")
+            print("")
             break
         elif dificuldade == "D":
             respostas = [pergunta["respostaCorreta"] for pergunta in perguntas["dificil"]]
             perguntas = perguntas["dificil"]
             print("Dificuldade Difícil escolhida")
+            print("")
             break
         else:
             print("Insira uma dificuldade válida!")
@@ -153,6 +146,7 @@ def leaderboard():
         print("\n")
 
     input("Digite qualquer coisa para voltar para o menu... \n")
+    print("")
     menu()
 
 #exibe menu principal
@@ -165,18 +159,24 @@ def menu():
     acertadas = 0
     dificuldade = ""
 
-    print("Bem vindo ao quiz Reblox!!!")
-    print("1 - Jogar")
-    print("2 - Leaderboard")
-    print("0 - Sair")
+    while True:
 
-    opcao = int(input("Sua opção: "))
+        print("Bem vindo ao quiz Reblox!!!")
+        print("1 - Jogar")
+        print("2 - Leaderboard")
+        print("0 - Sair")
 
-    if opcao == 1:
-        quiz()
-    elif opcao == 2:
-        leaderboard()
-    elif opcao == 0:
-        return
+        opcao = input("Sua opção: ")
+        print("")
+
+        if opcao == "1":
+            quiz()
+        elif opcao == "2":
+            leaderboard()
+        elif opcao == "0":
+            print("Até a proxima!")
+            break
+        else:
+            print("Digite uma opção válida\n")
 
 menu()
