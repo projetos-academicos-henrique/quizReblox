@@ -209,8 +209,27 @@ perguntas = {
 
 quizEl = document.querySelector("#quiz")
 currentQuestionIndex = 0
+perguntasSelecionadas = []
+correctAnwsers = 0
+
+def showMenu(event = False):
+
+    quizEl.innerHTML = ""
+
+    buttonJogar = document.createElement("button")
+    buttonJogar.innerText = "Jogar"
+    buttonJogar.setAttribute("py-click", "selectDifficult")
+    
+    quizEl.appendChild(buttonJogar)
+
+showMenu()
+
+
 
 def selectDifficult(event):
+    dificultDiv = document.createElement("div")
+    dificultDiv.classList.add("menu")
+
     buttonFacil = document.createElement("button")
     buttonFacil.innerText = "Fácil"
     buttonFacil.value = "F"
@@ -221,15 +240,20 @@ def selectDifficult(event):
     buttonDificil.value = "D"
     buttonDificil.setAttribute("py-click","quiz")
 
-    quizEl.appendChild(buttonFacil)
-    quizEl.appendChild(buttonDificil)
+    dificultDiv.appendChild(buttonFacil)
+    dificultDiv.appendChild(buttonDificil)
+
+    quizEl.appendChild(dificultDiv)
 
 def quiz(event):
+
+    global perguntasSelecionadas, currentQuestionIndex
+
+    currentQuestionIndex = 0
+
     quizEl.innerHTML = ""
 
     difficult = event.target.value
-
-    perguntasSelecionadas = []
 
     while True:
         if difficult == "F":
@@ -241,32 +265,76 @@ def quiz(event):
         else:
             print("Dificuldade inválida!")
 
+    question()
+
+
+
+def question():
+
+    global perguntasSelecionadas
+
+    quizEl.innerHTML = ""
+
     currentQuestion = perguntasSelecionadas[currentQuestionIndex]
 
-    pergunta = currentQuestion["pergunta"]
-    respostas = currentQuestion["respostas"]
-    respostaCorreta = currentQuestion["respostaCorreta"]
+    question = currentQuestion["pergunta"]
+    answers = currentQuestion["respostas"]
 
-    question(pergunta, respostas, respostaCorreta)
-
-
-
-def question(question, answers, correctAnswer):
     questionEl = document.createElement("p")
     questionEl.innerHTML = question
 
     answersEl = document.createElement("div")
+    answersEl.classList.add("menu")
 
     for i, answer in enumerate(answers):
         answerEl = document.createElement("button")
+        answerEl.setAttribute("py-click","verifyAnswer")
         answerEl.innerText = answer
         answerEl.value = chr(65 + i)
 
         answersEl.appendChild(answerEl)
 
-
     quizEl.appendChild(questionEl)
     quizEl.appendChild(answersEl)
 
+def verifyAnswer(event):
+
+    global perguntasSelecionadas, currentQuestionIndex, correctAnwsers
+
+    currentAnswer = perguntasSelecionadas[currentQuestionIndex]["respostaCorreta"]
+    selectedAnswer = event.target.value
+
+    if currentAnswer == selectedAnswer:
+        print("acertou")
+        correctAnwsers += 1
+    else:
+        print("errou")
 
 
+    if not currentQuestionIndex >= len(perguntasSelecionadas) - 1:
+        currentQuestionIndex += 1
+        question()
+    else:
+        gameOver()
+
+
+
+def gameOver():
+    quizEl.innerHTML = ""
+
+    correctAnwsersEl = document.createElement("p")
+    correctAnwsersEl.innerHTML = "Respostas corretas: " + str(correctAnwsers)
+
+    inputName = document.createElement("input")
+    inputName.setAttribute("placeholder", "Insira seu nome")
+
+    buttonMenu = document.createElement("button")
+    buttonMenu.innerText = "Menu"
+    buttonMenu.setAttribute("py-click", "showMenu")
+    
+    quizEl.appendChild(correctAnwsersEl)
+    quizEl.appendChild(inputName)
+    quizEl.appendChild(buttonMenu)
+
+
+    

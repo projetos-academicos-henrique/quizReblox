@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Lato", sans-serif;
+    box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+}
+
+body{
+    background-color: #ECF8FC;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.quiz{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 200px;
+}
+
+.quiz > .menu{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    background: #000;
+    padding: 20px;
+}
+
+.btn,
+button {
+    padding: 12px 16px;
+    background-color: #00B8F6;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    color: #ECF8FC;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.btn:hover,
+button:hover {
+    background-color: #006c90;
+}
