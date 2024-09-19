@@ -1,83 +1,67 @@
 import streamlit as st
 import perguntas
+import time
 
 perguntas = perguntas.perguntas
 
-if 'game_started' not in st.session_state:
-    st.session_state.game_started = False
+if 'dificuldade' not in st.session_state:
+    st.session_state.dificuldade = None
+if 'perguntaAtual' not in st.session_state:
+    st.session_state.perguntaAtual = 0
+if 'pontuacao' not in st.session_state:
+    st.session_state.pontuacao = 0
+if 'vidas' not in st.session_state:
+    st.session_state.vidas = 3
 
-if 'current_question_index' not in st.session_state:
-    st.session_state.current_question_index = 0
+st.sidebar.title("Reblox")
+opcao = st.sidebar.radio("Escolha uma opção:", ["Quiz", "Leaderboard"])
 
-if 'difficult' not in st.session_state:
-    st.session_state.difficult = None
-
-if 'questions' not in st.session_state:
-    st.session_state.questions = None
-
-if 'correct_anwsers' not in st.session_state:
-    st.session_state.correct_anwsers = 0
-
-if 'lifes' not in st.session_state:
-    st.session_state.lifes = 3
-
-def gameOver():
-    st.write(f"Vidas: {st.session_state.lifes}")
-    st.write(f"Game Over, sua pontuação foi: {st.session_state.correct_anwsers}")
-
-    st.text_input("Seu nome")
-
-def verifyAnswer(userAnswer, correctAnswer):
-    if userAnswer == correctAnswer:
-        st.write("Resposta correta!")
-        st.session_state.correct_anwsers += 1
-        return True
-    else:
-        st.write("Resposta incorreta!")
-        st.session_state.lifes -= 1
-        return False
-
-def printQuestion(question):
-    st.write(question["pergunta"])
-    
-    current_answer = st.radio("Alternativas:", question["respostas"], key=f"radio_{st.session_state.current_question_index}")
-    
-    if st.button("Selecionar", key=f"button_{st.session_state.current_question_index}"):
-        st.write(f"Você selecionou: {current_answer}")
-        verifyAnswer(current_answer, question["respostaCorreta"])
-
-        # Incrementa o índice da pergunta
-        st.session_state.current_question_index += 1
-
-        # Verifica se ainda há perguntas
-        if st.session_state.current_question_index < len(st.session_state.questions) and st.session_state.lifes > 0:
-            quiz()  # Chama a função para exibir a próxima pergunta
-        else:
-            # st.session_state.game_started = False
-            gameOver()
+def resetarJogo():
+    st.session_state.dificuldade = None
+    st.session_state.perguntaAtual = 0
+    st.session_state.pontuacao = 0
+    st.session_state.vidas = 3
 
 def quiz():
-    if st.session_state.difficult == "Fácil":
-        st.session_state.questions = perguntas["facil"]
-    elif st.session_state.difficult == "Difícil":   
-        st.session_state.questions = perguntas["dificil"]
+    st.write(perguntas[st.session_state.dificuldade][st.session_state.perguntaAtual]["pergunta"])
+    for item in perguntas[st.session_state.dificuldade][st.session_state.perguntaAtual]["respostas"]:
+        if st.button(item):
+            if item == perguntas[st.session_state.dificuldade][st.session_state.perguntaAtual]["respostaCorreta"]:
+                st.success("Resposta correta!")
+                st.session_state.pontuacao += 1
+            else:
+                st.error("Resposta incorreta!")
+                st.session_state.vidas -= 1
+            if st.session_state.vidas > 0:
+                st.session_state.perguntaAtual += 1
+                time.sleep(1)
+                st.rerun()
+            else:
+                st.error("Fim de jogo! Você perdeu todas as vidas.")
+                
+                
         
-    # Exibe a pergunta atual
-    printQuestion(st.session_state.questions[st.session_state.current_question_index])
+def leaderboard():
+    st.title("Leaderboard")
+    st.write("Confira as melhores pontuações!")
 
-# Lógica para exibir a página selecionada
-if st.sidebar.radio("Selecione uma página:", ("Jogar", "LeaderBoard")) == "Jogar":
+def main():
+    if opcao == "Quiz":
+        st.title("Quiz")
+        st.write("Bem-vindo ao Quiz! Selecione a dificuldade e comece a jogar.")
+        st.write(f"Vidas: {st.session_state.vidas}")
+        st.write(f"Pontuação: {st.session_state.pontuacao}")
+        if st.session_state.dificuldade is None:
+            if st.button("Fácil"):
+                st.session_state.dificuldade = "facil"
+                st.rerun()
+            if st.button("Difícil"):
+                st.session_state.dificuldade = "dificil"
+                st.rerun()
+        else:
+            quiz()
 
-    if not st.session_state.game_started:
-        st.write("""
-        # Quiz Reblox
-        Bem-vindo ao jogo! Aqui você pode jogar o quiz.
-        """)
-        difficult = st.radio("Selecione uma dificuldade:", ("Fácil", "Difícil"))
-        if st.button("Iniciar Quiz"):
-            st.session_state.difficult = difficult  
-            st.session_state.game_started = True
-            quiz()  
-    else:
-        st.write(f"Vidas: {st.session_state.lifes}")
-        quiz()  
+    elif opcao == "Leaderboard":
+        leaderboard()
+
+main()
