@@ -8,7 +8,7 @@ perguntas = {
                 "Eletricidade",
                 "Etanol"
             ],
-            "respostaCorreta": "C"
+            "respostaCorreta": "Eletricidade"
         },
         {
             "pergunta": "Quantas temporadas de corridas de Fórmula E ocorreram até agora?",
@@ -18,7 +18,7 @@ perguntas = {
                 "8",
                 "10"
             ],
-            "respostaCorreta": "C"
+            "respostaCorreta": "6"
         },
         {
             "pergunta": "Em que ano foi realizada a primeira temporada da Fórmula E?",
@@ -28,7 +28,7 @@ perguntas = {
                 "2016",
                 "2018"
             ],
-            "respostaCorreta": "B"
+            "respostaCorreta": "2014"
         },
         {
             "pergunta": "Qual empresa é a fornecedora oficial de pneus para a Fórmula E?",
@@ -38,7 +38,7 @@ perguntas = {
                 "Michelin",
                 "Goodyear"
             ],
-            "respostaCorreta": "C"
+            "respostaCorreta": "Michelin"
         },
         {
             "pergunta": "Qual cidade sediou a primeira corrida de Fórmula E?",
@@ -48,7 +48,7 @@ perguntas = {
                 "Pequim",
                 "Nova York"
             ],
-            "respostaCorreta": "C"
+            "respostaCorreta": "Pequim"
         },
         {
             "pergunta": "Quantos carros competem em cada corrida de Fórmula E?",
@@ -58,7 +58,7 @@ perguntas = {
                 "20",
                 "24"
             ],
-            "respostaCorreta": "D"
+            "respostaCorreta": "20"
         },
         {
             "pergunta": "Quantas equipes competem atualmente na Fórmula E?",
@@ -68,7 +68,7 @@ perguntas = {
                 "11",
                 "12"
             ],
-            "respostaCorreta": "D"
+            "respostaCorreta": "11"
         },
         {
             "pergunta": "Qual é a duração média de uma corrida de Fórmula E?",
@@ -78,7 +78,7 @@ perguntas = {
                 "1 hora",
                 "1 hora e 30 minutos"
             ],
-            "respostaCorreta": "B"
+            "respostaCorreta": "45 minutos"
         },
         {
             "pergunta": "Qual é o nome da temporada 2019-2020 da Fórmula E?",
@@ -88,7 +88,7 @@ perguntas = {
                 "Season 7",
                 "Season 8"
             ],
-            "respostaCorreta": "B"
+            "respostaCorreta": "Season 6"
         },
         {
             "pergunta": "Qual é a velocidade máxima aproximada dos carros de Fórmula E?",
@@ -98,7 +98,7 @@ perguntas = {
                 "250 km/h",
                 "300 km/h"
             ],
-            "respostaCorreta": "C"
+            "respostaCorreta": "250 km/h"
         }
     ],
     "dificil": [
@@ -110,7 +110,7 @@ perguntas = {
                 "DS Techeetah",
                 "Mahindra Racing"
             ],
-            "respostaCorreta": "B"
+            "respostaCorreta": "Renault e.dams"
         },
         {
             "pergunta": "Quem foi o primeiro campeão da Fórmula E?",
@@ -120,7 +120,7 @@ perguntas = {
                 "Lucas di Grassi",
                 "Jean-Eric Vergne"
             ],
-            "respostaCorreta": "A"
+            "respostaCorreta": "Nelson Piquet Jr."
         },
         {
             "pergunta": "Qual piloto tem mais vitórias na Fórmula E?",
@@ -130,7 +130,7 @@ perguntas = {
                 "Sebastien Buemi",
                 "Jean-Eric Vergne"
             ],
-            "respostaCorreta": "C"
+            "respostaCorreta": "Sebastien Buemi"
         },
         {
             "pergunta": "Qual é a capacidade da bateria dos carros de Fórmula E Gen3?",
@@ -140,7 +140,7 @@ perguntas = {
                 "54 kWh",
                 "60 kWh"
             ],
-            "respostaCorreta": "C"
+            "respostaCorreta": "54 kWh"
         },
         {
             "pergunta": "Qual é a potência máxima dos carros da Fórmula E durante a corrida?",
@@ -150,7 +150,7 @@ perguntas = {
                 "250 kW",
                 "300 kW"
             ],
-            "respostaCorreta": "C"
+            "respostaCorreta": "250 kW"
         },
         {
             "pergunta": "Quantos modos de potência existem na Fórmula E?",
@@ -160,7 +160,7 @@ perguntas = {
                 "4",
                 "5"
             ],
-            "respostaCorreta": "B"
+            "respostaCorreta": "3"
         },
         {
             "pergunta": "Qual é a distância máxima que um carro de Fórmula E pode percorrer com uma carga de bateria?",
@@ -170,7 +170,7 @@ perguntas = {
                 "200 km",
                 "250 km"
             ],
-            "respostaCorreta": "B"
+            "respostaCorreta": "150 km"
         },
         {
             "pergunta": "Quem é o fundador e CEO da Fórmula E?",
@@ -180,7 +180,7 @@ perguntas = {
                 "Bernie Ecclestone",
                 "Chase Carey"
             ],
-            "respostaCorreta": "A"
+            "respostaCorreta": "Alejandro Agag"
         },
         {
             "pergunta": "Em qual cidade está localizada a sede da Fórmula E?",
@@ -190,7 +190,7 @@ perguntas = {
                 "Nova York",
                 "Berlim"
             ],
-            "respostaCorreta": "A"
+            "respostaCorreta": "Londres"
         },
         {
             "pergunta": "Qual é o nome do sistema que permite aos fãs votarem para dar um impulso de potência aos seus pilotos favoritos?",
@@ -200,7 +200,7 @@ perguntas = {
                 "EnergyBoost",
                 "SpeedVote"
             ],
-            "respostaCorreta": "A"
+            "respostaCorreta": "FanBoost"
         }
     ]
 }
