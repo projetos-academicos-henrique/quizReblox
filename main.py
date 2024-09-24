@@ -36,7 +36,7 @@ def salvarPontuação(nome, pontuacao, dificuldade):
 
 def quiz():
 
-    if st.session_state.vidas > 0:
+    if st.session_state.vidas > 0 and st.session_state.perguntaAtual <= 9:
         st.write(perguntas[st.session_state.dificuldade][st.session_state.perguntaAtual]["pergunta"])
         for item in perguntas[st.session_state.dificuldade][st.session_state.perguntaAtual]["respostas"]:
             if st.button(item):
@@ -72,7 +72,7 @@ def leaderboard():
 
     if(len(sorted_facil) > 0):
         for i, item in enumerate(sorted_facil):
-            st.write(f"- {i+1}º - {item['nome']} {item['pontuacao']}")
+             st.write(f"{i+1}º Lugar: **{item['nome']}** - Pontuação: **{item['pontuacao']}**")
     else:
         st.write("Não há jogadores nessa categoria ainda")
 
@@ -82,7 +82,7 @@ def leaderboard():
 
     if(len(sorted_dificil) > 0):
         for i, item in enumerate(sorted_dificil):
-            st.write(f"- {i+1}º - {item['nome']} {item['pontuacao']}")
+             st.write(f"{i+1}º Lugar: **{item['nome']}** - Pontuação: **{item['pontuacao']}**")
     else:
         st.write("Não há jogadores nessa categoria ainda")
         
