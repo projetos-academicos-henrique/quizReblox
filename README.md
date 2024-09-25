@@ -3,11 +3,11 @@
 
 ## Integrantes
 
-- **Nome**: Andrey, **RM**: 555339
-- **Nome**: Henrique, **RM**: 554493
-- **Nome**: Oliver, **RM**: 554954
-- **Nome**: Pedro Gutierre, **RM**: 555445
-- **Nome**: William, **RM**: 555132
+- **Nome**: Andrey | **RM**: 555339
+- **Nome**: Henrique | **RM**: 554493
+- **Nome**: Oliver | **RM**: 554954
+- **Nome**: Pedro Gutierre | **RM**: 555445
+- **Nome**: William | **RM**: 555132
 ## Descrição do Projeto
 
 Este projeto consiste em um quiz interativo sobre a Fórmula E, desenvolvido em Python. O quiz tem como objetivo educar e entreter os usuários, aumentando o conhecimento sobre a Fórmula E de maneira gamificada. 
@@ -89,7 +89,7 @@ def salvarPontuação(nome, pontuacao, dificuldade):
 
 ```python
 def quiz():
-    if st.session_state.vidas > 0:
+    if st.session_state.vidas > 0 and st.session_state.perguntaAtual <= 9:
         st.write(perguntas[st.session_state.dificuldade][st.session_state.perguntaAtual]["pergunta"])
         for item in perguntas[st.session_state.dificuldade][st.session_state.perguntaAtual]["respostas"]:
             if st.button(item):
