@@ -24,6 +24,10 @@ Este projeto é uma aplicação de quiz simples utilizando Streamlit. O usuário
 
 O código é organizado em várias seções, cada uma responsável por uma parte específica da lógica da aplicação.
 
+### Fluxograma
+
+![fluxograma](./fluxograma.jpg)
+
 ### 1. Importação de Módulos
 
 ```python
